@@ -1,0 +1,19 @@
+{
+    "name": "pfinal/http",
+    "description": "The PFinal Http package.",
+    "license": "MIT",
+    "homepage": "http://www.pfinal.cn",
+    "authors": [
+        {
+            "name": "Zou Yiliang"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "PFinal\\Http\\": "src/"
+        }
+    }
+}
