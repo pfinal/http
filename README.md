@@ -1,14 +1,14 @@
-# PFinal\Http
+# Http
 
 一个PHP HTTP 客户端, 基于cURL的简单封装
 
-使用composer 安装
+## 使用composer 安装
 
 ```
 composer require pfinal/http
 ```
 
-示例
+## 示例
 
 ```php
 <?php
