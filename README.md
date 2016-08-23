@@ -16,7 +16,7 @@ composer require pfinal/http
 require  __DIR__ .'/vendor/autoload.php';
 
 // 如果未使用composer,使用下面的方式加载类
-// require __DIR__ . '/../src/ClassLoader.php';
+// require __DIR__ . '/src/ClassLoader.php';
 // \PFinal\Http\ClassLoader::register();
 
 $client = new \PFinal\Http\Client();
