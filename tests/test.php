@@ -13,4 +13,8 @@ var_dump($response->getStatusCode());
 
 var_dump($response->getTransferInfo());
 
-var_dump($response->getBody());
+echo '<br>';
+
+$body = $response->getBody();
+echo nl2br(htmlspecialchars($body));
+
