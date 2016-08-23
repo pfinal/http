@@ -53,7 +53,7 @@ class Client
             $postData[$field] = '@' . $filename;
         }
 
-        return self::request('POST', $url, $data);
+        return self::request('POST', $url, $postData + $data);
     }
 
     /**
