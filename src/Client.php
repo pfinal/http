@@ -38,8 +38,8 @@ class Client
      * 上传文件
      * @param string $url
      * @param string $field
-     * @param string $filename 文件路径
-     * @param array $data
+     * @param string $filename 文件路径 例如 "./images/1.jpg"
+     * @param array $data 需要post的内容
      * @return Response
      */
     public static function file($url, $field, $filename, array $data = array())
@@ -48,12 +48,12 @@ class Client
 
         //PHP 5.6 禁用了 '@/path/filename' 语法上传文件
         if (class_exists('\CURLFile')) {
-            $postData[$field] = new \CURLFile($filename);
+            $data[$field] = new \CURLFile($filename);
         } else {
-            $postData[$field] = '@' . $filename;
+            $data[$field] = '@' . $filename;
         }
 
-        return self::request('POST', $url, $postData + $data);
+        return self::request('POST', $url, $data);
     }
 
     /**
