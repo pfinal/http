@@ -39,10 +39,10 @@ class Client
      * @param string $url
      * @param string $field
      * @param string $filename 文件路径
-     * @param array|string $data
+     * @param array $data
      * @return Response
      */
-    public static function file($url, $field, $filename, $data = array())
+    public static function file($url, $field, $filename, array $data = array())
     {
         $filename = realpath($filename);
 
