@@ -1,6 +1,6 @@
 # Http
 
-一个PHP HTTP 客户端, 基于cURL的简单封装
+一个简单易用的PHP HTTP 客户端, 基于cURL封装
 
 ## 使用composer 安装
 
