@@ -23,12 +23,15 @@ $client = new \PFinal\Http\Client();
 
 $response = $client->get('http://www.baidu.com');
 
+//http状态码 例如: 200 404 等
 var_dump($response->getStatusCode());
+
 
 var_dump($response->getTransferInfo());
 
 echo '<br>';
 
+//响应内容
 $body = $response->getBody();
 echo nl2br(htmlspecialchars($body));
 
@@ -37,3 +40,9 @@ echo nl2br(htmlspecialchars($body));
 
 // file upload
 // $client->file($url, 'photo', './images/1.jpg');
+
+//download
+//$response = $client->get('https://www.baidu.com/img/bd_logo1.png');
+//if ($response->getStatusCode() == 200) {
+//  file_put_contents('./bd.png', $response->getBody());
+//}

@@ -21,6 +21,7 @@ class Response
 
     /**
      * http响应状态码
+     *
      * @return int
      */
     public function getStatusCode()
@@ -30,19 +31,31 @@ class Response
 
     /**
      * http响应body
+     *
      * @return string
      */
     public function getBody()
     {
-        return (string)$this->body;
+        return $this->body;
     }
 
     /**
      * 传输状态信息
+     *
      * @return array
      */
     public function getTransferInfo()
     {
         return (array)$this->transferInfo;
+    }
+
+    /**
+     * http响应头
+     *
+     * @return string
+     */
+    public function getHeader()
+    {
+        return $this->header;
     }
 }
