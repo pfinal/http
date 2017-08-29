@@ -26,7 +26,6 @@ $response = $client->get('http://www.baidu.com');
 //http状态码 例如: 200 404 等
 var_dump($response->getStatusCode());
 
-
 var_dump($response->getTransferInfo());
 
 echo '<br>';
