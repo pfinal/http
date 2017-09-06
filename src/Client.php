@@ -8,12 +8,22 @@ namespace PFinal\Http;
  */
 class Client
 {
+    public $connectTimeout = 10;
+    public $timeout = 60;
+
+    public function __construct(array $config = array())
+    {
+        foreach ($config as $k => $item) {
+            $this->$k = $item;
+        }
+    }
+
     /**
      * 执行GET请求
      * @param $url
      * @return Response
      */
-    public static function get($url, $data = null)
+    public function get($url, $data = null)
     {
         if (!empty($data)) {
             $char = strpos($url, '?') === false ? '?' : '&';
@@ -29,7 +39,7 @@ class Client
      * @param array|string $data
      * @return Response
      */
-    public static function post($url, $data = null)
+    public function post($url, $data = null)
     {
         return self::request('POST', $url, $data);
     }
@@ -42,7 +52,7 @@ class Client
      * @param array $data 需要post的内容
      * @return Response
      */
-    public static function file($url, $field, $filename, array $data = array())
+    public function file($url, $field, $filename, array $data = array())
     {
         $filename = realpath($filename);
 
@@ -75,13 +85,14 @@ class Client
      *  ]
      * @return Response
      */
-    public static function request($method, $url, $postData = null, $options = array())
+    public function request($method, $url, $postData = null, $options = array())
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 150); //允许cURL函数执行的最长秒数
+        curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout); //接收缓冲完成超时设置 (秒)
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->connectTimeout); //连接服务器超时设置(秒)
 
         //https请求 不验证证书和host
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
