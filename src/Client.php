@@ -20,39 +20,46 @@ class Client
 
     /**
      * 执行GET请求
+     *
      * @param $url
+     * @param null|array $data
+     * @param array $options
      * @return Response
      */
-    public function get($url, $data = null)
+    public function get($url, $data = null, $options = array())
     {
         if (!empty($data)) {
             $char = strpos($url, '?') === false ? '?' : '&';
             $url = $url . $char . http_build_query($data);
         }
 
-        return self::request('GET', $url);
+        return self::request('GET', $url, null, $options);
     }
 
     /**
      * 执行POST请求
-     * @param string $url
-     * @param array|string $data
+     *
+     * @param $url
+     * @param null|string|array $data
+     * @param array $options
      * @return Response
      */
-    public function post($url, $data = null)
+    public function post($url, $data = null, $options = array())
     {
-        return self::request('POST', $url, $data);
+        return self::request('POST', $url, $data, $options);
     }
 
     /**
      * 上传文件
+     *
      * @param string $url
      * @param string $field
      * @param string $filename 文件路径 例如 "./images/1.jpg"
      * @param array $data 需要post的内容
+     * @param array $options
      * @return Response
      */
-    public function file($url, $field, $filename, array $data = array())
+    public function file($url, $field, $filename, array $data = array(), $options = array())
     {
         $filename = realpath($filename);
 
@@ -63,11 +70,12 @@ class Client
             $data[$field] = '@' . $filename;
         }
 
-        return self::request('POST', $url, $data);
+        return self::request('POST', $url, $data, $options);
     }
 
     /**
      * 执行cURL
+     *
      * @param $url
      * @param string $method 例如 GET POST HEAD DELETE PUT
      * @param null|string|array $postData
