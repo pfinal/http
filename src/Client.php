@@ -11,6 +11,10 @@ class Client
     public $connectTimeout = 10;
     public $timeout = 60;
 
+    public $proxy = null;         //https://github.com/pfinal/proxy
+    public $proxyPort = null;
+    public $proxyUserPwd = null; // "代理用户:代理密码"
+
     public function __construct(array $config = array())
     {
         foreach ($config as $k => $item) {
@@ -115,6 +119,16 @@ class Client
 
         if (!empty($options)) {
             curl_setopt_array($ch, $options);
+        }
+
+        if ($this->proxy) {
+            curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+        }
+        if ($this->proxyPort) {
+            curl_setopt($ch, CURLOPT_PROXYPORT, $this->proxyPort);
+        }
+        if ($this->proxyUserPwd) {
+            curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->proxyUserPwd);
         }
 
         $response = curl_exec($ch);
